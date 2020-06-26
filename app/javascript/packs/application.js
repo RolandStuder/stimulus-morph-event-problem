@@ -19,12 +19,15 @@ import 'bootstrap/dist/js/bootstrap'
 import 'bootstrap/dist/css/bootstrap'
 
 import "controllers"
-
-var ready = function () {
-    console.log($('[data-toggle="tooltip"]'))
-    $('[data-toggle="tooltip"]').tooltip();
-
-};
-
-$(document).on("turbolinks:load", ready);
-$(document).on("stimulusReflex:load", ready);
+//
+// var ready = function (e) {
+//     console.log("after reflex: ",e)
+//     $('[data-toggle="tooltip"]').tooltip();
+// };
+//
+// $(document).on("turbolinks:load", ready);
+// $(document).on("stimulus-reflex:load", ready);
+//
+// document.addEventListener('stimulus-reflex:load', event => {
+//   $('[data-toggle="tooltip"]').tooltip();
+// })

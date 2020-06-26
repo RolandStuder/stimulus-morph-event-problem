@@ -1,4 +1,38 @@
-<h2>With StimulusController wrapping everything</h2>
+<h1>Morphdome issues with jquery and bootstrap stuff</h1>
+
+
+<p>Using Bootstrap Javascript components with SR is tricky. See here why</p>
+
+<p>After every reflex an event is triggered, that tries to make all buttons have a tooltip</p>
+<pre>
+document.addEventListener('stimulus-reflex:load', event => {
+  $('[data-toggle="tooltip"]').tooltip();
+})
+</pre>
+<section id="normal">
+  <h2>Vanilla example</h2>
+
+  <p>Generally it tries to make </p>
+
+  <button id="" type="button" class="btn btn-secondary" data-controller="tooltip connect-after-reflex" data-toggle="tooltip" data-placement="top" title="Tooltip on top">
+    I am normal, after a reflex my tooltip  will no longer work
+  </button>
+
+  <button type="button" class="btn btn-danger" data-reflex="click" data-reflex-root="#normal"><%= @stimulus_reflex ? "Triggered" : "Trigger Reflex" %></button>
+  <p>If you inspect the button, you will see it still has event listeners attached, but the don't work anymore.</p>
+</section>
+
+<section id="handlers" data-controller="handlers">
+  <h2>Let us try to manually attach event handlers</h2>
+
+  <button id="" type="button" class="btn btn-secondary" data-target="handlers.button" data-toggle="tooltip" data-placement="top" title="Tooltip on top">
+    I get manual handlers from the handlers-controller
+  </button>
+  <button type="button" class="btn btn-danger" data-reflex="click" data-reflex-root="#handlers"><%= @stimulus_reflex ? "Triggered" : "Trigger Reflex" %></button>
+  <p>This button has a controller that changes text on connecting, after a reflex it morphes back, but of course does not trigger connect as it is not a new DOM node</p>
+  <p data-target="handlers.comment"></p>
+</section>
+
 
 <div data-controller="example">
     <div>
@@ -38,12 +72,12 @@
 <h2>With Data Reflex Permanent</h2>
 <div>
   <div>
-    <button  data-controller="hello"  data-reflex-permanent="true" data-target="hello.bootstrapy" type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Tooltip on top">
+    <button  data-controller="hello"  data-reflex-permanent data-target="hello.bootstrapy" type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Tooltip on top">
       I am the original, untouched by any controller
     </button>
   </div>
   <% if @new %>
-    New: <button id="new" data-controller="hello" data-target="hello.bootstrapy" type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Tooltip on top">
+    New: <button id="new" data-reflex-permanent data-controller="hello" data-target="hello.bootstrapy" type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Tooltip on top">
   Hi I am new, untouched by any controller
 </button>
   <% end %>
@@ -55,12 +89,13 @@
 <div>
   <div>
     <button  type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Tooltip on top">
-      I am the original, untouched by any controller
+      I got no controller stuff, but should have the tooltip
     </button>
   </div>
   <% if @new %>
     New: <button id="new" type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Tooltip on top">
-  Hi I am new, untouched by any controller
+  I got no controller stuff, but should have the tooltip
+
 </button>
   <% end %>
 

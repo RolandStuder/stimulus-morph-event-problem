@@ -10,4 +10,9 @@ export default class extends Controller {
     //   val.textContent = "Aw"
     // })
   }
+
+  afterReflex() {
+    this.bootstrapyTarget.textContent = 'I am changed by a controller on the element!'
+
+  }
 }

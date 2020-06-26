@@ -12,4 +12,11 @@ export default class extends ApplicationController {
         })
     }
 
+    afterReflex(element, reflex) {
+        this.bootstrapyTargets.forEach(function(val,index) {
+            val.textContent = "I am changed by a wrapping controller"
+        })
+
+    }
+
 }

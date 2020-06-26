@@ -43,8 +43,8 @@ export default class extends Controller {
     // show error message etc...
   }
 
-  afterReflex (element, reflex) {
-    var event = new Event('stimulusReflex:load');
+  afterReflex () {
+    const event = new Event('stimulus-reflex:load');
     document.dispatchEvent(event)
   }
 }
