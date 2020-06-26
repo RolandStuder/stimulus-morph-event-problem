@@ -46,5 +46,7 @@ export default class extends Controller {
   afterReflex () {
     const event = new Event('stimulus-reflex:load');
     document.dispatchEvent(event)
+    console.log("connect-after-reflex: ", $("[data-controller~=\"connect-after-reflex\"]"))
+
   }
 }
