@@ -1,0 +1,71 @@
+<h2>With StimulusController wrapping everything</h2>
+
+<div data-controller="example">
+    <div>
+      <button  data-controller="" data-target="hello.bootstrapy example.bootstrapy" type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Tooltip on top">
+        I am the original, untouched by any controller
+      </button>
+    </div>
+    <% if @new %>
+      New: <button id="new" data-controller="" data-target="hello.bootstrapy example.bootstrapy" type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Tooltip on top">
+        Hi I am new, untouched by any controller
+      </button>
+    <% end %>
+
+</div>
+
+<hr>
+
+<h2>With StimulusController on Element</h2>
+
+<div >
+  <div>
+    <button  data-controller="hello"  data-target="hello.bootstrapy" type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Tooltip on top">
+      I am the original, untouched by any controller
+    </button>
+  </div>
+  <% if @new %>
+    New: <button id="new" data-controller="hello" data-target="hello.bootstrapy" type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Tooltip on top">
+      Hi I am new, untouched by any controller
+    </button>
+  <% end %>
+
+
+</div>
+
+<hr>
+
+<h2>With Data Reflex Permanent</h2>
+<div>
+  <div>
+    <button  data-controller="hello"  data-reflex-permanent="true" data-target="hello.bootstrapy" type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Tooltip on top">
+      I am the original, untouched by any controller
+    </button>
+  </div>
+  <% if @new %>
+    New: <button id="new" data-controller="hello" data-target="hello.bootstrapy" type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Tooltip on top">
+  Hi I am new, untouched by any controller
+</button>
+  <% end %>
+
+</div>
+<hr>
+
+<h2>No content change</h2>
+<div>
+  <div>
+    <button  type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Tooltip on top">
+      I am the original, untouched by any controller
+    </button>
+  </div>
+  <% if @new %>
+    New: <button id="new" type="button" class="btn btn-secondary" data-toggle="tooltip" data-placement="top" title="Tooltip on top">
+  Hi I am new, untouched by any controller
+</button>
+  <% end %>
+
+</div>
+
+<p>
+  <button id="me" type="button" class="btn btn-success" data-reflex="click->exampleReflex#new" data-count="<%= @count %>">Double tooltips for double power</button>
+</p>
